@@ -24,7 +24,7 @@
 \name{李晨曦}
 
 \basicInfo{
-  \email{hexileee@gmail.com} \textperiodcentered\ 
+  \email{i@hexilee.me} \textperiodcentered\ 
   \phone{(+86) 18868104342} \textperiodcentered\ 
   \github[Hexilee]{https://github.com/hexilee}
   % \linkedin[user]{https://www.linkedin.com/in/user}
@@ -32,55 +32,43 @@
 
 \section{\texorpdfstring{\faGraduationCap}{}\ 教育经历}
 \datedsubsection{\textbf{浙江大学}, 中国}{2016.9 -- 现在}
-  专业：海洋工程与技术，预计毕业日期：2020.6
+  专业：海洋工程与技术，预计毕业日期：2021.6
 
 \section{\texorpdfstring{\faUsers}{}\ 工作经历}
 \textbf{暂无}
 
 \section{\texorpdfstring{\faGithubAlt}{}\ 个人项目}
 
-\datedsubsection{\textbf{\href{https://github.com/Hexilee/async-io-demo}{async-io-demo}}}{}
-阐述了个人对 rust 异步 IO 的理解，并基于\href{https://github.com/carllerche/mio} {mio} 和 coroutine 给 rust 实现了试验性的异步非阻塞 IO。
+\datedsubsection{\textbf{\href{https://github.com/Hexilee/roa}{roa}}}{}
+给rust实现的类koajs异步web框架。
 \begin{itemize}
-  \item 介绍了几种可能的异步 API 实现并分析优劣。
-  \item 分析 rust 在实现 stackless coroutine 时遇到的问题和现有的解决方案。
-  \item 分别基于 rust-1.32 和 rust-1.33 实现了异步非阻塞的 TcpStream 和 fs::{read, write}。
-  \item 使用实现出的 TcpStream 和 fs 写了几个 example 验证实现的正确性。
+  \item 实现了一个基于hyper，近乎零成本抽象的roa-core，支持自定义的异步运行时和传输层协议。
+  \item 实现了分别基于tokio和async-std的运行方案；支持TLS。
+  \item 实现了基于Radix Trie和正则表达式的路由。
+  \item 实现了很多常用中间件和Context功能扩展（如Content Compression, Query Parser, CORS, Cookie, JWT, WebSocket）。
+\end{itemize}
+
+\datedsubsection{\textbf{\href{https://github.com/Hexilee/async-io-demo}{async-io-demo}}}{}
+阐述了个人对rust异步编程的理解，基于mio给rust实现了试验性的异步运行时及其它IO组件。
+\begin{itemize}
+  \item 介绍了几种常见的异步API实现并分析优劣。
+  \item 分析rust在实现stackless coroutine时遇到的问题和现有的解决方案。
+  \item 实现了异步的TcpStream和fs::{read, write}。
+  \item 使用实现出的TcpStream和fs写了几个example验证实现的正确性。
+\end{itemize}
+
+\datedsubsection{\textbf{\href{https://github.com/Hexilee/tio}{tio}}}{}
+一套rust异步IO解决方案，目前只完成了task和net两个模块。
+\begin{itemize}
+  \item task模块提供带Work Stealing的多线程异步运行时、简单同步任务运行时和异步sleep，timer等。
+  \item net模块提供TcpListener, TcpStream, UdpSocket, UnixListener, UnixStream和UnixDatagram。
 \end{itemize}
 
 \datedsubsection{\textbf{\href{https://github.com/Hexilee/unhtml.rs}{unthml.rs}}}{}
-给 rust 实现的 html parser，基于 proc-macro 和 \href{https://github.com/programble/scraper} {scraper}。
+给rust实现的html parser，基于proc-macro和scraper。
 \begin{itemize}
-  \item 支持 rust 所有的非引用、无泛型参数类型和 Vec。
-  \item 使用 css-selector，支持缺省值。
-\end{itemize}
-
-\datedsubsection{\textbf{\href{https://github.com/Hexilee/unhtml}{unthml}}}{}
-unhtml.rs 的 go 版本，使用 struct tag 作标注，基于 \href{github.com/PuerkitoBio/goquery} {goquery}。
-\begin{itemize}
-  \item 支持所有的 go 类型，支持插入 coverter。 
-  \item 使用 css-selector，缺省值使用零值。
-\end{itemize}
-
-\datedsubsection{\textbf{\href{https://github.com/Hexilee/htest}{htest}}}{}
- 给 go 写的 http 测试库，API 受 Spring Framework 的启发。
-\begin{itemize}
-  \item 支持 go 标准库中 http 包所支持的各种 http 请求。
-  \item 对 JSON、XML 等常见数据格式的测试有便捷的 API 支持。对媒体数据的测试有便捷的 hash 比对支持。
-\end{itemize}
-
-\datedsubsection{\textbf{\href{https://github.com/rady-io/inject}{inject}}}{}
-给 go 写的基于 struct tag 的依赖注入框架，类似于 Spring Boot。由于 go 语言本身的设计限制，现已弃坑；框架设想见 \href{https://zhuanlan.zhihu.com/p/32616898} {给 Go 写一个类 Spring Boot 框架}。截至最后一次 release(v0.4.3)，该项目已实现了设想文章中的全部功能，包括：
-\begin{itemize}
-  \item 全局组件单例注入，局部作用域单例注入，配置文件注入。
-  \item 结构化的路由注册（router、controller 和 middleware 可以嵌入其它的 router）。
-  \item 中间件注册。
-  \item 组件自定义构造器。
-  \item Entities 的注册。
-  \item 配置文件热重载。
-  \item 一些 echo middleware 的 wrapper（cors、jwt、logger）。
-  \item 依赖注入测试。
-  \item 环境变量控制加载配置文件。
+  \item 支持rust所有的非引用类型、无泛型参数类型、Vec和Option。
+  \item 使用css-selector，支持缺省值。
 \end{itemize}
 
 
@@ -88,31 +76,33 @@ unhtml.rs 的 go 版本，使用 struct tag 作标注，基于 \href{github.com/
 \begin{itemize}[parsep=0.25ex]
   \item \textbf{编程语言}:
     \textbf{泛语言开发者}（编程不受特定语言限制），
-    且尤其熟悉 Rust/Cpp/Go/NodeJS/TS/Python/Java，
-    较为熟悉 C/Kotlin/Dart/Elixir/Scala (均不分先后)。
+    且尤其熟悉Rust/Cpp/Go/NodeJS/TS/Python/Java，
+    较为熟悉C/Kotlin/Elixir/Scala。
 
-  \item \textbf{Web 后端}:
-    使用过各种语言和框架（包括 django, koa, gin, echo, beego, springboot, nest, vertx, phoenix）写过 Web 后端，对不同类型后端框架的实现很感兴趣也有一定研究，开发并维护过拥有上千用户的后端项目。除了传统 HTTP 后端，也开发过 Websocket、gRPC 接口的后端。
+  \item \textbf{Web后端}:
+    使用过各种语言和框架（包括django, koa, gin, echo, beego, springboot, nest, vertx, phoenix）写过Web后端，对不同类型后端框架的实现很感兴趣也有一定研究，开发并维护过拥有上千用户的后端项目。
 
-  \item \textbf{HTTP 协议}:
-    比较熟悉，读过 \href{https://tools.ietf.org/html/rfc7230} {RFC-7230} 和 \href{https://tools.ietf.org/html/rfc7231} {RFC-7231}，并翻译了\href{https://github.com/Hexilee/RFC-HTTP_1.1-zh} {一部分}。
+  \item \textbf{HTTP协议}:
+    比较熟悉，读过RFC-7230和RFC-7231，并翻译了一部分。
+  
+  \item \textbf{异步编程}:
+    对多路复用IO（如epoll, kqueue）、异步IO（如aio, io-uring, iocp）均有一定研究。对stackful/stackless coroutine的应用场景、优劣、实现原理均有研究。
 
   \item \textbf{并发模型效率及并发安全}:  
-    对传统多线程 master-worker、CSP、Actor 都比较熟悉；对 stackful coroutine 和 stackless coroutine 的实现原理均有研究。对锁（主要是 Linux 上的 Futex），Atomic（Memory Order），CAS 的优劣及效率也有所了解。
+    对传统多线程master-worker、CSP、Actor都比较熟悉；对锁（如读写锁和Linux上的Futex），Atomic（Memory Order），CAS的实现和效率也有所了解。
 
-  \item \textbf{Linux 部署/运维}:
-    部署项目主要使用 pm2 或 docker（与 gitlab 集成 CD）。在浙江大学求是潮技术研发中心有过两年的线上生产运维经验，能熟练查看机器资源占用情况、进行基本的网络诊断、使用 iptables 转发网络包以及使用 ssh 打 tunnel 等。
-  
-  \item \textbf{Web 前端}:
-    对现代前端框架感兴趣并有一定了解，主要熟悉 React-Redux、单向数据流。由于很长时间没写过实际的前端项目，对具体布局和浏览器兼容性等内容并不了解。
+  \item \textbf{Linux部署/运维}:
+    部署项目主要使用pm2和docker（与gitlab集成CD）。有过两年的线上生产运维经验，能熟练查看机器资源占用情况、进行基本的网络诊断、使用iptables转发网络包以及使用ssh打tunnel等。
 
   \item \textbf{开发工具/习惯}:
-    能适应任何编译器/操作系统，平时在 macOS 下使用 JetBrains IDE、vim、vscode。熟练使用 GitHub，GitLab，travis-ci，coveralls，gitlab-ci 等进行团队协作和代码测试。喜欢使用静态类型语言和编写测试来降低自己的心智负担，喜欢写完善的文档来向他人介绍展示自己的项目。
+    能适应任何编译器/操作系统，平时在macOS下使用JetBrains IDE、vim、vscode。熟练使用GitHub，GitLab，travis-ci，coveralls，gitlab-ci等进行团队协作和代码测试。喜欢使用静态类型语言和编写测试来降低自己的心智负担，喜欢写完善的文档来向他人介绍展示自己的项目。
 \end{itemize}
 
 \section{\texorpdfstring{\faInfo}{}\ 其他}
 \begin{itemize}[parsep=0.25ex]
   \item 博客: \url{https://hexilee.me/}。
+  \item 知乎: \url{https://www.zhihu.com/people/hexilee}。
+  \item 岗位相关：曾参加过TiDB Hackathon 2019，实现了prof结果的HTTP API；今年五月报名了易用性挑战赛，目前解决了\href{https://github.com/tikv/tikv/issues/7626}{\#7626}；对Raft算法、TiKV的架构均有所了解。
 \end{itemize}
 
 \end{document}
